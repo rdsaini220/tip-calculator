@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Tip Calculator</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+    integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper.js -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"
+    integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous">
+  </script>
+  
+</head>
+<body>
+  <!--================================== Start time 10:50AM =============================================-->
+  <main class="container my-5">
+      <div class="row">
+        <div class="col-md-5 mx-auto p-4">
+            <aside name='TipClc' class="row g-3">
+              <div class="col-md-12">
+                <label for="billamt" class="form-label">How Much was your bill?</label>
+                <input type="number" onkeyup="this.value=this.value.replace(/^0/gi, '1')" ;
+                  onkeypress='return event.charCode >= 48 && event.charCode <= 57' ;
+                  class="form-control" min='1' id="billamt" name="billamt" placeholder="Enter Amount $" required>
+                  <span id="error"></span>
+              </div>
+              <div class="col-md-12">
+                <label for="discount" class="form-label">How was your service? <button type="button"
+                    class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#add_discount">+</button>
+                </label>
+                <select id="discount" name="discount" class="form-select" required>
+                  <option value="" selected>Choose...</option>
+                  <option value="30">30% Outstanding</option>
+                  <option value="20">20% Good</option>
+                  <option value="15">15% It Was Ok</option>
+                  <option value="10">10% Bad</option>
+                  <option value="5">5% Terrible</option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <label for="people" class="form-label">How Many people are sharing the bill ?</label>
+                <input type="number" class="form-control" min='1' onkeyup="this.value=this.value.replace(/^0/gi, '1')";
+                  onkeypress='return event.charCode >= 48 && event.charCode <= 57'; name="people" id="people"
+                  placeholder="Enter People" required>
+                <span class="error"></span>
+              </div>
+              <div class="col-12">
+                <button type="button" onclick="TipCalculator()" class="btn btn-primary form-control">Calculate!</button>
+              </div>
+            </aside>
+            <div class="mt-2 text-center">
+              <h2>TIP AMOUNT</h2>
+              <h3 id='TotalAmount'>$00.00</h3>
+            </div>
+        </div>
+      </div> 
+      <!-- Modal -->
+      <div class="modal fade" id="add_discount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Service</h5>
+              <button type="button" id="closeButton" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name='AddService' id="AddService" class="row g-3">
+                <div class="col-md-12">
+                  <label for="service_title" class="form-label">Service Title</label>
+                  <input type="text" class="form-control" id="service_title" name="service_title" placeholder="Enter Discount Title" required>
+                </div>
+                <div class="col-md-12">
+                  <label for="discount_value" class="form-label">Discount Value(%)</label>
+                  <input type="number" class="form-control" min='1' max="99" maxlength="2"
+                    onkeyup="this.value=this.value.replace(/^0/gi, '1')";
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="discount_value"
+                      id="discount_value" placeholder="Enter discount value" required>
+                  <span class="error"></span>
+                </div>
+                <div class="col-12">
+                  <button type="button" id="addS" class="btn btn-primary form-control">Add</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
